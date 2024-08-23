@@ -20,16 +20,18 @@ import {
 import { type ToggleActions } from '../../hooks';
 
 type ArticleParamsFormProps = {
-	onChangeData?: (settings: ArticleStateType) => void;
+	setArticleState: (state: ArticleStateType) => void;
 	isFormOpen: boolean;
 	actions: ToggleActions;
 };
 
 export const ArticleParamsForm = ({
-	onChangeData,
+	setArticleState,
 	isFormOpen,
 	actions,
 }: ArticleParamsFormProps) => {
+	const onChangeData = (state: ArticleStateType) => setArticleState(state);
+
 	const [articleSettings, setArticleSettings] = useState({
 		fontFamilyOption: fontFamilyOptions[0],
 		fontColor: fontColors[0],
@@ -91,6 +93,7 @@ export const ArticleParamsForm = ({
 		if (isFormOpen === true && event.key === 'Escape') {
 			actions.close();
 		}
+		if (!isFormOpen) return;
 	};
 
 	useEffect(() => {
