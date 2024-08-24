@@ -97,6 +97,7 @@ export const ArticleParamsForm = ({
 	};
 
 	useEffect(() => {
+		if (!isFormOpen) return;
 		document.addEventListener('keydown', handlerOpenWidget);
 		return () => {
 			document.removeEventListener('keydown', handlerOpenWidget);
